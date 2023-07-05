@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="/dist/output.css">
     <link rel="stylesheet" href="/src/css/style.css">
     <script src="https://kit.fontawesome.com/c49f5046f2.js" crossorigin="anonymous"></script>
-
-    <script src="../src/js/init.js" defer></script>
-    <script src="../dist/bundle.js" defer></script>
+    <script src="/dist/bundle.js" defer></script>
 
 
     <style>
@@ -22,13 +20,13 @@
 
 <body>
     <nav class="navbar">
-        <a href="#" class="logo">Cocktail Events</a>
+        <a href="index.html" class="logo">Cocktail Events</a>
         <div class="nav-links">
             <ul>
-                <li><a onclick="scrollToDiv(1)" href="#">Cocktails</a></li>
-                <li><a onclick="scrollToDiv(3)" href="#">Mocktails</a></li>
-                <li><a onclick="scrollToDiv(2)" href="#">About Us</a></li>
-                <li><a onclick="scrollToDiv(4)" href="#">Contact</a></li>
+                <li><a href="#child2">Cocktails</a></li>
+                <li><a href="#child4">Mocktails</a></li>
+                <li><a href="#child3">About Us</a></li>
+                <li><a href="#">Contact</a></li>
                 <li><a id="signout">Sign Out</a></li>
                 <li class="active"><a href="../src/signup.html">Book Now</a></li>
 
@@ -44,10 +42,33 @@
 
     <div class="scroll">
         <div class="parallax" id="para-eff">
-
+            <div class="wrapper">
+                <div class="container">
+                    <h1 id="logo-home">Sip & Screen</h1>
+                </div>
+            </div>
         </div>
 
-        <div class="parallax reveal">
+        <div class="parallax reveal" id="child2">
+            <div class="text-section">
+                <h1> Our Upcoming Event</h1>
+
+                <p>Join us for a delightful movie night experience where we create a cozy and homely ambiance,
+                    accompanied
+                    by our exquisite cocktails and mocktails.</p><br>
+
+                <p><span>Friendly Reminder:<span>
+
+                            Gather your friends and join us for a memorable evening. Don't forget to bring along your
+                            favorite
+                            blanket and a soft pillow to make yourself truly at home. We can't wait to create a warm and
+                            inviting
+                            atmosphere for you to unwind and enjoy the movie magic.</p>
+            </div>
+
+        </div>
+        <div class="parallax reveal" id="child3">
+
             <h1 id="heading1">Our Cocktails</h1>
             <div class="carousel">
                 <div class="carousel__nav">
@@ -68,8 +89,11 @@
                     <div class="carousel-item__info">
                         <div class="carousel-item__container">
                             <h1 class="carousel-item__title" id="logo-animate"> Pornstar Martini</h1>
-                            <h2 class="carousel-item__subtitle" id="logo-animate">PASSIONFRUIT VODKA , LIMEJUICE ,
-                                COINTREAU & VANILLE SRYUP </h2>
+                            <h2 class="carousel-item__subtitle" id="logo-animate">PASSIONFRUIT,
+                                COINTREAU,
+                                LIMEJUICE,
+                                VODKA &
+                                VANILLE SRYUP </h2>
 
                         </div>
                     </div>
@@ -107,11 +131,10 @@
                 </div>
             </div>
 
-        </div>
-        <div class="parallax reveal">
+
 
         </div>
-        <div class="parallax reveal ">
+        <div class="parallax reveal " id="child4">
             <h1 id="heading1">Our Mocktails</h1>
 
             <div class="carousel2">
@@ -123,7 +146,8 @@
                     </span>
                     <span id="moveRight2" class="carousel__arrow">
                         <svg class="carousel__icon" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+                            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z">
+                            </path>
                         </svg>
                     </span>
                 </div>
@@ -152,7 +176,8 @@
                     <div class="carousel-item__info2">
                         <div class="carousel-item__container2">
                             <h1 class="carousel-item__title2">Anahuac</h1>
-                            <h2 class="carousel-item__subtitle2">GRAPEFRUIT,ORANGE, SODA & LEMON JUICE </h2>
+                            <h2 class="carousel-item__subtitle2">GRAPEFRUIT,
+                                ORANGE, SODA & LEMON JUICE </h2>
 
 
                         </div>
@@ -172,7 +197,24 @@
 
             </div>
         </div>
+
     </div>
+    <footer id="">
+        <div class="footer-content">
+            <h3>Sip & Screen</h3>
+
+            <ul class="socials">
+                <li><i class="fa fa-envelope"></i> prakevent@gmail.com</a></li>
+
+                <li><a href="https://www.instagram.com/foodie__kids/"><i class="fa fa-instagram"></i>
+                        INSTAGRAM</a></li>
+
+
+
+            </ul>
+        </div>
+
+    </footer>
 
 
 

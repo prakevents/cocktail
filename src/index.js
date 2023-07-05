@@ -40,9 +40,21 @@ const q = query(colRef, orderBy('last_name'))
 const auth = getAuth();
 
 
-const user = auth.currentUser;
+let totalSum = 0;
 
-// mailsender using nodemailer 
+getDocs(colRef)
+  .then((querySnapshot) => {
+    querySnapshot.docs.forEach((doc) => {
+      totalSum += parseInt(doc.data().num__of_people, 10);
+    });
+    console.log('Total sum:', totalSum);
+  })
+  .catch((error) => {
+    console.log('Error getting documents:', error);
+  });
+
+
+const user = auth.currentUser;
 
 
 
@@ -51,6 +63,7 @@ function redirectToPage(pagename, delayInSeconds) {
     window.location.href = pagename + '.html';
   }, delayInSeconds * 1000);
 }
+
 
 
 //LOGOUT 
@@ -119,6 +132,7 @@ if (window.location.pathname.includes('index.html')) {
   window.addEventListener('scroll', reveal)
   function reveal() {
     var reveals = document.querySelectorAll('.reveal');
+
     for (var i = 0; i < reveals.length; i++) {
       var windowheight = window.innerHeight;
       var revealtop = reveals[i].getBoundingClientRect().top;
@@ -133,21 +147,6 @@ if (window.location.pathname.includes('index.html')) {
   }
 
 
-  function scrollToDiv(index) {
-    const parallaxElements = document.querySelectorAll('.parallax');
-    if (index >= 0 && index < parallaxElements.length) {
-      const element = parallaxElements[index];
-      const offsetTop = element.offsetTop;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-    }
-    toggleMenuIcons();
-
-  }
-
-
-
-
-
 
   /* */
 
@@ -159,7 +158,6 @@ if (window.location.pathname.includes('index.html')) {
     parallaxEff.style.backgroundPositionY = offset * 0.7 + "px";
 
   })
-
 
   // carausel1
   const moveLeftBtn = document.getElementById('moveLeft');
@@ -182,15 +180,6 @@ if (window.location.pathname.includes('index.html')) {
 
   moveLeftBtn.addEventListener('click', moveLeft);
   moveRightBtn.addEventListener('click', moveRight);
-
-
-
-
-
-
-
-
-
 
   const moveLeftBtn2 = document.getElementById('moveLeft2');
   const moveRightBtn2 = document.getElementById('moveRight2');
@@ -220,12 +209,9 @@ if (window.location.pathname.includes('index.html')) {
 
 
 
-
-
-
-
 //booking
 if (window.location.pathname.includes('booking.html')) {
+
   auth.onAuthStateChanged((user) => {
     if (user) {
       const addUserData = document.getElementById('add');
@@ -234,9 +220,10 @@ if (window.location.pathname.includes('booking.html')) {
       addUserData.email.value = user.email;
       addUserData.email.setAttribute('readonly', 'readonly');
 
+
       addUserData.addEventListener('submit', (e) => {
         e.preventDefault();
-
+        const currentNum = addUserData.elements.num_people.value;
         var recaptchaResponse = grecaptcha.getResponse();
         if (recaptchaResponse.length === 0) {
           alert("Please verify that you are human by completing the reCAPTCHA.");
@@ -247,22 +234,34 @@ if (window.location.pathname.includes('booking.html')) {
               if (!querySnapshot.empty) {
                 alert('You have already booked for this event');
               } else {
-                addDoc(colRef, {
-                  first_name: addUserData.fname.value,
-                  last_name: addUserData.lname.value,
-                  email: addUserData.email.value,
-                  num__of_people: addUserData.num_people.value,
-                  phone_number: addUserData.ph_number.value,
-                  createdAt: Date()
-                })
-                  .then(() => {
-                    addUserData.classList.add('hidden');
-                    thankYou.classList.remove('hidden');
-                    redirectToPage('../dist/index', 10);
+                if (totalSum + currentNum >= 24) {
+                  alert(`Sorry! We already reached the booking limit.\n
+                  Only ${24 - totalSum} slots remain.\n
+
+
+                  `)
+                  addUserData.reset();
+
+                } else {
+                  addDoc(colRef, {
+                    first_name: addUserData.fname.value,
+                    last_name: addUserData.lname.value,
+                    email: addUserData.email.value,
+                    num__of_people: addUserData.num_people.value,
+                    phone_number: addUserData.ph_number.value,
+                    createdAt: Date()
+
+
                   })
-                  .catch((error) => {
-                    console.error('Error adding document: ', error);
-                  });
+                    .then(() => {
+                      addUserData.classList.add('hidden');
+                      thankYou.classList.remove('hidden');
+                      redirectToPage('../index', 10);
+                    })
+                    .catch((error) => {
+                      console.error('Error adding document: ', error);
+                    });
+                }
               }
             })
             .catch((error) => {

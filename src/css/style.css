@@ -5,6 +5,110 @@
     font-family: 'Open Sans', sans-serif;
     scroll-behavior: smooth;
 }
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+:root {
+  --color-1: #186cb8;
+  --color-2: #2a9a9f;
+  --color-3: #f1b211;
+  --color-4: #e83611;
+  --color-5: #f9002f;
+}
+
+.text-section {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+  }
+  
+  .text-section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    width:100%;
+  }
+  
+  .text-section p {
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 3px;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin: 0;
+    color: black;
+    font-weight: 700;
+   
+    
+  }
+
+.wrapper {
+  line-height: 1;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 16px);
+}
+
+#logo-home {
+  font-family: "Exo", sans-serif;
+  font-size: 15vw;
+  font-weight: 900;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin: auto;
+  text-transform: uppercase;
+  background: linear-gradient(219deg, 
+    var(--color-1) 19%, 
+    transparent 19%,transparent 20%, 
+    var(--color-2) 20%, var(--color-2)  39%,
+    transparent 39%,transparent 40%, 
+    var(--color-3) 40%,var(--color-3) 59% ,
+    transparent 59%,transparent 60%, 
+    var(--color-4) 60%, var(--color-4) 79%,
+    transparent 79%, transparent 80%, 
+    var(--color-5) 80%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: pulse 2s infinite;
+
+
+}
+
+.container {
+  padding: 1.5rem;   
+  text-align: center;
+  background: radial-gradient(circle at 1.4% 1.4% ,var(--color-1) .8%,transparent  .8% ), 
+    radial-gradient(circle at 5.5% 3%,var(--color-2) .45% ,transparent .45% ), 
+    radial-gradient(circle at 2.5% 3.5%,var(--color-3) .5% ,transparent .5% ), 
+    radial-gradient(circle at 4.5% 1.2%,var(--color-4) .25%,transparent .25% ),
+
+    radial-gradient(circle at 98% 98% ,var(--color-1) .8%,transparent  .8% ), 
+    radial-gradient(circle at 95% 95%,var(--color-2) .45% ,transparent .45% ), 
+    radial-gradient(circle at 94.5% 97.5%,var(--color-3) .5% ,transparent .5% ), 
+    radial-gradient(circle at 98.5% 95.5%,var(--color-4) .25%,transparent .25% );
+
+}
+
+
+@keyframes pulse {
+    0% {
+      background-size: 100% 100%;
+    }
+    50% {
+      background-size: 120% 120%;
+    }
+    100% {
+      background-size: 100% 100%;
+    }}
+  
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 6.5rem;
+  }
+}
 body{
    font-family: 'Poppins';
     background-color: #1a1a1a;
@@ -23,11 +127,13 @@ body{
     color: white;
     font-family: 'Playfair Display', serif;
 
+    
 }
 .navbar .logo{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     font-family: 'Playfair Display', serif;
+    color: #f1b211;
 
 }
 .navbar .nav-links ul {
@@ -59,7 +165,7 @@ body{
     position: absolute;
     top: 60px;
     right: 50px;
-    color: white;
+    color: #2a9a9f;
     opacity: 1;
     transition: opacity 0.3s ease;
 
@@ -166,6 +272,16 @@ opacity: 0;
     transition: 0.6s all ease-in-out;
     margin-bottom: 20px;
 }
+#heading2{
+    font-family: 'Playfair Display', serif;
+    font-size: 1px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #bebebe;
+    transform: translateY(25%);
+    transition: 0.6s all ease-in-out;
+    margin-bottom: 10px;
+}
 
 h2{
     margin: 15px 0 0 0;
@@ -180,9 +296,7 @@ h2{
 }
 
 .scroll>.parallax:nth-child(1) {
-    background-image: url(../img/pexels-george-desipris-1028637.jpg);
-    background-size: cover;
-    background-position: center;
+ 
 }
 
 
@@ -201,16 +315,22 @@ h2{
 
 }
 
+
 .reveal {
     position: relative;
     transform: translateY(150px);
     opacity: 0;
     transition: all 2s ease;
+    filter:blur(8px)
+
+
+  
 
 }
 .reveal.active{
     transform: translateY(0px);
     opacity: 1;
+    filter:blur(0)
 }
 
 
@@ -605,4 +725,57 @@ h2{
 .active2 .carousel-item__image2 {
     transition: 0.6s all ease-in-out;
     transform: translateX(0);
+}
+
+footer{
+    background: #111;
+    
+    height: 20vh;
+    width: 100%;
+    font-family: "Open Sans";
+    color: white;
+}
+
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer-content>h3{
+font-size: 1.6rem;
+font-weight: 400;
+text-transform: capitalize;
+line-height: 3rem;
+}
+.footer-content>p{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+
+}
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+.socials>li{
+    margin: 0 10px;
+    
+}
+.socials>a{
+    text-decoration: none;
+    color: white;
+}
+
+.socials>a>i {
+    font-size: 1.1rem;
+}
+.socials a:hover i{
+color: aqua;
 }
