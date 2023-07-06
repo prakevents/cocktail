@@ -154,7 +154,7 @@ body{
 .navbar .nav-links ul li.active a {
     color: white;
     font-weight: 600;
-    background : orange;
+    background : #2a9a9f;
     padding: 10px 20px;
     border-radius:1.5rem;
     
@@ -313,8 +313,7 @@ h2{
 
 .scroll>.parallax:nth-child(4) {
 
-
-}
+margin-bottom: 60px;}
 
 
 
@@ -743,13 +742,15 @@ h2{
     transform: translateX(0);
 }
 
+/*
 footer{
     background: #111;
     
-    height: 20vh;
+    height: 0vh;
     width: 100%;
     font-family: "Open Sans";
     color: white;
+    overflow: scroll;
 }
 
 .footer-content{
@@ -795,7 +796,7 @@ line-height: 3rem;
 .socials a:hover i{
 color: aqua;
 }
-
+*/
 .icons-event{
     display: flex;
     flex-wrap: wrap;
