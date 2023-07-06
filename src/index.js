@@ -4,14 +4,13 @@ import {
   getFirestore, collection, onSnapshot,
   addDoc, query, orderBy, where,
   getDocs,
-  documentId
+
 } from 'firebase/firestore';
 import {
-  getAuth, getRedirectResult, signInWithPhoneNumber, signOut,
+  getAuth, signOut,
   GoogleAuthProvider, signInWithPopup, onAuthStateChanged
 
 } from 'firebase/auth'
-
 
 
 

@@ -838,6 +838,44 @@ transition-delay:200ms;
       gap: 10px;
     }
 
+
   }
+
+  footer {
+    background-color: #bebebe;
+    padding: 20px;
+  }
+  
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  ul.socials {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul.socials li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  ul.socials li a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  ul.socials li a i {
+    margin-right: 5px;
+  }
+  
   
   
