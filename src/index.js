@@ -131,7 +131,7 @@ if (window.location.pathname.includes('index.html')) {
 
   window.addEventListener('scroll', reveal)
   function reveal() {
-    var reveals = document.querySelectorAll('.reveal');
+    var reveals = document.querySelectorAll('.reveal,.reveal2');
 
     for (var i = 0; i < reveals.length; i++) {
       var windowheight = window.innerHeight;
@@ -151,13 +151,6 @@ if (window.location.pathname.includes('index.html')) {
   /* */
 
 
-  const parallaxEff = document.getElementById('para-eff');
-
-  window.addEventListener('scroll', (e) => {
-    let offset = window.pageYOffset;
-    parallaxEff.style.backgroundPositionY = offset * 0.7 + "px";
-
-  })
 
   // carausel1
   const moveLeftBtn = document.getElementById('moveLeft');
