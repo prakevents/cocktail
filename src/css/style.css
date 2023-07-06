@@ -240,6 +240,9 @@ opacity: 0;
 
 }
     
+h1{
+    text-align: center;
+}
 
 
 
@@ -679,6 +682,11 @@ margin-bottom: 60px;}
 }
 .carousel-item--4 .carousel-item__image2 {
     background-image: url('../img/yakult.jpg');
+}
+
+h3{
+    text-align: center;
+    font-size: 2px ;
 }
 
 
