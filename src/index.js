@@ -236,7 +236,7 @@ if (window.location.pathname.includes('booking.html')) {
 
                 } else {
                   addDoc(colRef, {
-                    first_name: addUserData.fname.value,
+                    first_name: addUserData.name.value,
                     last_name: addUserData.lname.value,
                     email: addUserData.email.value,
                     num__of_people: addUserData.num_people.value,
