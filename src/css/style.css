@@ -885,5 +885,10 @@ transition-delay:200ms;
     margin-right: 5px;
   }
   
+  #signout {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color-3);
+  }
   
   
