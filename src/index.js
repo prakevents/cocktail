@@ -7,7 +7,7 @@ import {
 
 } from 'firebase/firestore';
 import {
-  getAuth, signOut,
+  getAuth, signOut, signInWithRedirect,
   GoogleAuthProvider, signInWithPopup, onAuthStateChanged
 
 } from 'firebase/auth'
@@ -68,7 +68,7 @@ function redirectToPage(pagename, delayInSeconds) {
 //LOGOUT 
 
 //LOGIN
-
+/*
 if (window.location.pathname.includes('signup.html')) {
 
   const gmailLogin = document.getElementById('gmailLogin');
@@ -96,20 +96,20 @@ if (window.location.pathname.includes('signup.html')) {
 
     }
   })
-};
+}; */
 
-
+// index
 
 if (window.location.pathname.includes('index.html')) {
-  const logOut = document.getElementById('signout');
-  logOut.addEventListener('click', (e) => {
-    signOut(auth).then(() => {
-      console.log('user signed out');
-      alert('You have been logged out');
-    }).catch((error) => {
-      console.log(error);
-    })
-  });
+  /* const logOut = document.getElementById('signout');
+   logOut.addEventListener('click', (e) => {
+     signOut(auth).then(() => {
+       console.log('user signed out');
+       alert('You have been logged out');
+     }).catch((error) => {
+       console.log(error);
+     })
+   }); */
 
   // Toggle the visibility of the menu hamburger, X mark, and mobile menu
   const menuHamburger = document.getElementById("menu-hamburger");
@@ -205,67 +205,58 @@ if (window.location.pathname.includes('index.html')) {
 if (window.location.pathname.includes('booking.html')) {
 
   auth.onAuthStateChanged((user) => {
-    if (user) {
-      const addUserData = document.getElementById('add');
-      const thankYou = document.getElementById('thank-you');
-      console.log(user.email);
-      addUserData.email.value = user.email;
-      addUserData.email.setAttribute('readonly', 'readonly');
+    const addUserData = document.getElementById('add');
+    const thankYou = document.getElementById('thank-you');
 
-
-      addUserData.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const currentNum = addUserData.elements.num_people.value;
-        var recaptchaResponse = grecaptcha.getResponse();
-        if (recaptchaResponse.length === 0) {
-          alert("Please verify that you are human by completing the reCAPTCHA.");
-        } else {
-          const queryRef = query(colRef, where('email', '==', addUserData.email.value));
-          getDocs(queryRef)
-            .then((querySnapshot) => {
-              if (!querySnapshot.empty) {
-                alert('You have already booked for this event');
-              } else {
-                if (totalSum + currentNum >= 24) {
-                  alert(`Sorry! We already reached the booking limit.\n
+    addUserData.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const currentNum = addUserData.elements.num_people.value;
+      var recaptchaResponse = grecaptcha.getResponse();
+      if (recaptchaResponse.length === 0) {
+        alert("Please verify that you are human by completing the reCAPTCHA.");
+      } else {
+        const queryRef = query(colRef, where('email', '==', addUserData.email.value));
+        getDocs(queryRef)
+          .then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+              alert('You have already booked for this event');
+            } else {
+              if (totalSum + currentNum >= 24) {
+                alert(`Sorry! We already reached the booking limit.\n
                   Only ${24 - totalSum} slots remain.\n
 
 
                   `)
-                  addUserData.reset();
+                addUserData.reset();
 
-                } else {
-                  addDoc(colRef, {
-                    first_name: addUserData.name.value,
-                    last_name: addUserData.lname.value,
-                    email: addUserData.email.value,
-                    num__of_people: addUserData.num_people.value,
-                    phone_number: addUserData.ph_number.value,
-                    createdAt: Date()
+              } else {
+                addDoc(colRef, {
+                  first_name: addUserData.name.value,
+                  last_name: addUserData.lname.value,
+                  email: addUserData.email.value,
+                  num__of_people: addUserData.num_people.value,
+                  phone_number: addUserData.ph_number.value,
+                  createdAt: Date()
 
 
+                })
+                  .then(() => {
+                    addUserData.classList.add('hidden');
+                    thankYou.classList.remove('hidden');
+                    redirectToPage('../index', 10);
                   })
-                    .then(() => {
-                      addUserData.classList.add('hidden');
-                      thankYou.classList.remove('hidden');
-                      redirectToPage('../index', 10);
-                    })
-                    .catch((error) => {
-                      console.error('Error adding document: ', error);
-                    });
-                }
+                  .catch((error) => {
+                    console.error('Error adding document: ', error);
+                  });
               }
-            })
-            .catch((error) => {
-              console.log("Error getting documents: ", error);
-            });
-        }
-      });
-    } else {
-      console.log('User is not logged in');
-      alert('Not Logged In, cannot submit');
-      redirectToPage('signup', 0);
-    }
+            }
+          })
+          .catch((error) => {
+            console.log("Error getting documents: ", error);
+          });
+      }
+    });
+
   });
 }
 
