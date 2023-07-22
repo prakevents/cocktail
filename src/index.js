@@ -221,34 +221,22 @@ if (window.location.pathname.includes('booking.html')) {
             if (!querySnapshot.empty) {
               alert('You have already booked for this event');
             } else {
-              if (totalSum + currentNum >= 24) {
-                alert(`Sorry! We already reached the booking limit.\n
-                  Only ${24 - totalSum} slots remain.\n
-
-
-                  `)
-                addUserData.reset();
-
-              } else {
-                addDoc(colRef, {
-                  first_name: addUserData.name.value,
-                  last_name: addUserData.lname.value,
-                  email: addUserData.email.value,
-                  num__of_people: addUserData.num_people.value,
-                  phone_number: addUserData.ph_number.value,
-                  createdAt: Date()
-
-
+              addDoc(colRef, {
+                first_name: addUserData.name.value,
+                last_name: addUserData.lname.value,
+                email: addUserData.email.value,
+                num__of_people: addUserData.num_people.value,
+                phone_number: addUserData.ph_number.value,
+                createdAt: Date()
+              })
+                .then(() => {
+                  addUserData.classList.add('hidden');
+                  thankYou.classList.remove('hidden');
+                  redirectToPage('../index', 10);
                 })
-                  .then(() => {
-                    addUserData.classList.add('hidden');
-                    thankYou.classList.remove('hidden');
-                    redirectToPage('../index', 10);
-                  })
-                  .catch((error) => {
-                    console.error('Error adding document: ', error);
-                  });
-              }
+                .catch((error) => {
+                  console.error('Error adding document: ', error);
+                });
             }
           })
           .catch((error) => {
@@ -258,7 +246,11 @@ if (window.location.pathname.includes('booking.html')) {
     });
 
   });
+
 }
+
+
+
 
 
 // table
